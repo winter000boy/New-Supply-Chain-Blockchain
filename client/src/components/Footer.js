@@ -1,8 +1,9 @@
 import React from "react";
+import "./Footer.css"; // Import the CSS file for styling
 
 const Footer = () => {
   return (
-    <footer style={{ textAlign: "center", padding: "10px", backgroundColor: "#f8f9fa" }}>
+    <footer className="footer">
       <p>© 2025 Pharma Supply Chain. All rights reserved.</p>
     </footer>
   );

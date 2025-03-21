@@ -5,7 +5,9 @@ body {
     padding: 0;
     padding-top: 60px;
     background-color: #f4f4f9;
+    flex-direction: column;
     color: #333;
+    min-height: 100vh;
 }
 
 h1, h2, h3 {
@@ -181,6 +183,10 @@ table tr:hover {
     background-color: #0056b3;
     transform: scale(1.05);
 }
+
+.App {
+    flex: 1; /* Allow the main content to grow and push the footer to the bottom */
+  }
 
 /* Animations */
 @keyframes fadeIn {
