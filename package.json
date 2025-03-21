@@ -1,5 +1,29 @@
 {
+  "name": "supply-chain-blockchain",
+  "version": "1.0.0",
+  "description": "Blockchain-based Pharma Supply Chain Management System",
+  "main": "truffle-config.js",
+  "scripts": {
+    "compile": "truffle compile",
+    "migrate": "truffle migrate",
+    "test": "truffle test",
+    "console": "truffle console",
+    "ganache": "ganache-cli -p 7545"
+  },
   "dependencies": {
     "truffle": "^5.7.4"
-  }
+  },
+  "devDependencies": {
+    "ganache": "^7.8.0",
+    "dotenv": "^16.0.3"
+  },
+  "keywords": [
+    "blockchain",
+    "supply-chain",
+    "truffle",
+    "ethereum",
+    "smart-contracts"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
 }
