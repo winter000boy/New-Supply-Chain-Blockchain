@@ -1,0 +1,15 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "Backend for Coffee Supply Chain",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "test": "node testweb3.js"
+    },
+    "dependencies": {
+        "dotenv": "^16.4.7",
+        "express": "^4.18.2",
+        "web3": "^1.10.4"
+    }
+}
