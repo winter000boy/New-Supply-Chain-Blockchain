@@ -1,0 +1,55 @@
+1️⃣ Step-by-Step Flow
+🟢 1. Raw Material Supplier → Logs Batch Details
+✅ Supplier Actions:
+
+Logs batch number, source location, purity tests, and date on the blockchain.
+The system generates a QR code for the batch.
+✅ Checkpoint Created:
+
+Status: "Raw Material Supplied"
+Blockchain Entry: Batch details linked to the QR code.
+🔹 QR Scan → Manufacturer verifies raw material before use.
+
+🟡 2. Manufacturer → Updates Production Details
+✅ Manufacturer Actions:
+
+Scans the QR code of raw materials.
+Updates the blockchain with manufacturing details (production date, facility, temperature, and WHO compliance).
+✅ Checkpoint Created:
+
+Status: "Manufactured"
+Blockchain Entry: Medicine batch now linked to manufacturer details.
+🔹 QR Scan → Distributor verifies before transport.
+
+🟠 3. Distributor → Records Transport & Cold Storage
+✅ Distributor Actions:
+
+Scans the QR code before transporting.
+Logs temperature conditions, timestamps, and delivery checkpoints on the blockchain.
+✅ Checkpoint Created:
+
+Status: "In Transit"
+Blockchain Entry: Real-time tracking updates with timestamps.
+🔹 QR Scan → Retailer verifies upon receiving the batch.
+
+🟣 4. Retailer → Confirms Receipt & Storage
+✅ Retailer Actions:
+
+Scans the QR code on arrival.
+Updates the blockchain with storage conditions & availability for sale.
+✅ Checkpoint Created:
+
+Status: "Available for Sale"
+Blockchain Entry: Medicine batch is now at the pharmacy.
+🔹 QR Scan → Consumer verifies authenticity before purchase.
+
+🔵 5. Consumer → Verifies Product Authenticity
+✅ Consumer Actions:
+
+Scans the QR code using their smartphone (without login).
+Views full product history (supplier, manufacturer, transport, and storage details).
+✅ Final Checkpoint Created:
+
+Status: "Medicine Sold & Verified"
+Blockchain Entry: Consumer authentication logged (read-only).
+🔹 Prevents counterfeiting by ensuring full traceability.

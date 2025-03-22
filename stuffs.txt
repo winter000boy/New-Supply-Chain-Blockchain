@@ -1,0 +1,122 @@
+blockchainService.js (New File)
+
+Handles interactions with the blockchain (e.g., logging and retrieving data).
+Location: server/services/blockchainService.js
+qrService.js (New File)
+
+Handles QR code generation and decoding.
+Location: server/services/qrService.js
+supplyChainController.js (New File)
+
+Contains the logic for each step in the supply chain (supplier, manufacturer, distributor, retailer, consumer).
+Location: server/controllers/supplyChainController.js
+supplyChainRoutes.js (New File)
+
+Defines the API routes for supply chain actions.
+Location: server/routes/supplyChainRoutes.js
+server.js (Existing File)
+
+Add the new routes to the server.
+Location: server.js
+
+
+Step 3: Implementation Flow
+1️⃣ Raw Material Supplier
+Backend:
+
+Add a function in supplyChainController.js to log batch details and generate a QR code.
+Use blockchainService.js to log the data on the blockchain.
+Use qrService.js to generate the QR code.
+Frontend:
+
+Create SupplierPage.js to allow suppliers to input batch details and generate a QR code.
+Use QRCodeGenerator.js to display the QR code.
+2️⃣ Manufacturer
+Backend:
+
+Add a function in supplyChainController.js to scan the QR code and update manufacturing details.
+Use blockchainService.js to update the blockchain.
+Frontend:
+
+Create ManufacturerPage.js to allow manufacturers to scan QR codes and input production details.
+Use QRScanner.js to scan the QR code.
+3️⃣ Distributor
+Backend:
+
+Add a function in supplyChainController.js to scan the QR code and log transport details.
+Use blockchainService.js to update the blockchain.
+Frontend:
+
+Create DistributorPage.js to allow distributors to scan QR codes and log transport details.
+Use QRScanner.js to scan the QR code.
+4️⃣ Retailer
+Backend:
+
+Add a function in supplyChainController.js to scan the QR code and confirm receipt.
+Use blockchainService.js to update the blockchain.
+Frontend:
+
+Create RetailerPage.js to allow retailers to scan QR codes and confirm receipt.
+Use QRScanner.js to scan the QR code.
+5️⃣ Consumer
+Backend:
+
+Add a function in supplyChainController.js to retrieve the full product history from the blockchain.
+Frontend:
+
+Create ConsumerPage.js to allow consumers to scan QR codes and view product history.
+Use QRScanner.js to scan the QR code.
+Step 4: File-by-File Implementation
+Backend
+blockchainService.js:
+
+Functions to interact with the blockchain (e.g., log data, retrieve data).
+qrService.js:
+
+Functions to generate and decode QR codes.
+supplyChainController.js:
+
+Functions for each role (supplier, manufacturer, distributor, retailer, consumer).
+supplyChainRoutes.js:
+
+Define routes for each role (e.g., /api/supply-chain/supplier, /api/supply-chain/manufacturer).
+server.js:
+
+Add the supplyChainRoutes to the server.
+Frontend
+SupplierPage.js:
+
+Form to log batch details and generate QR codes.
+ManufacturerPage.js:
+
+QR scanner and form to update production details.
+DistributorPage.js:
+
+QR scanner and form to log transport details.
+RetailerPage.js:
+
+QR scanner and form to confirm receipt.
+ConsumerPage.js:
+
+QR scanner to view product history.
+QRScanner.js:
+
+A reusable component for scanning QR codes.
+QRCodeGenerator.js:
+
+A reusable component for generating QR codes.
+Next Steps
+
+
+
+
+
+Start with the backend:
+Create blockchainService.js and qrService.js.
+Implement supplyChainController.js and supplyChainRoutes.js.
+
+Move to the frontend:
+Create QRScanner.js and QRCodeGenerator.js.
+Implement SupplierPage.js and test the QR code generation.
+
+Test each step (supplier → manufacturer → distributor → retailer → consumer) incrementally.
