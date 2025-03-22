@@ -117,24 +117,30 @@ contract SupplyChain is Roles {
         RET[retCtr] = Retailer(_address, retCtr, _name, _place);
     }
 
+    // Add a function to retrieve medicine details
+    function getMedicineDetails(uint256 _id) public view returns (Medicine memory) {
+        require(MedicineStock[_id].id != 0, "Medicine does not exist");
+        return MedicineStock[_id];
+    }
+
     // Add medicine
     function addMedicine(
-    string memory _name,
-    string memory _description,
-    uint256 _batchNumber,
-    uint256 _expirationDate,
-    uint256 _RMSid
-) public onlySupplier {
-    require(RMS[_RMSid].addr != address(0), "Invalid raw material supplier ID");
+        string memory _name,
+        string memory _description,
+        uint256 _batchNumber,
+        uint256 _expirationDate,
+        uint256 _RMSid
+    ) public onlySupplier {
+        require(RMS[_RMSid].addr != address(0), "Invalid raw material supplier ID");
 
-    medicineCtr++;
-    MedicineStock[medicineCtr] = Medicine(
-        medicineCtr,
-        MedicineDetails(_name, _description, _batchNumber, _expirationDate),
-        MedicineTracking(_RMSid, 0, 0, 0, "", "", STAGE.RawMaterialSupply) // Set initial stage to RawMaterialSupply
-    );
-    emit MedicineAdded(medicineCtr, _name, _batchNumber);
-}
+        medicineCtr++;
+        MedicineStock[medicineCtr] = Medicine(
+            medicineCtr,
+            MedicineDetails(_name, _description, _batchNumber, _expirationDate),
+            MedicineTracking(_RMSid, 0, 0, 0, "", "", STAGE.RawMaterialSupply) // Set initial stage to RawMaterialSupply
+        );
+        emit MedicineAdded(medicineCtr, _name, _batchNumber);
+    }
 
     // Update manufacturing details
     function updateManufacturingDetails(uint256 _id, uint256 _MANid) public onlyManufacturer {
