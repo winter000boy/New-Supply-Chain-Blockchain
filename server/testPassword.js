@@ -1,11 +1,30 @@
 const bcrypt = require('bcrypt');
 
-const testPassword = async () => {
-  const plainPassword = 'durgesh'; // Replace with the password you want to test
-  const hashedPassword = '$2b$10$p5hvKDbqFu93iPiqbl1FTOaxLePhOzHhvo/4THeE9VIX/ZDmFsese'; // Replace with the hashed password from the database
+/**
+ * Test if a plain password matches a hashed password.
+ * @param {string} plainPassword - The plain password to test.
+ * @param {string} hashedPassword - The hashed password to compare against.
+ */
+const testPassword = async (plainPassword, hashedPassword) => {
+  try {
+    if (!plainPassword || !hashedPassword) {
+      console.error("Both plain password and hashed password are required.");
+      return;
+    }
 
-  const isMatch = await bcrypt.compare(plainPassword, hashedPassword);
-  console.log('Password match:', isMatch);
+    const isMatch = await bcrypt.compare(plainPassword, hashedPassword);
+    console.log("Password match:", isMatch);
+  } catch (err) {
+    console.error("Error testing password:", err.message);
+  }
 };
 
-testPassword();
+// Example usage
+const plainPassword = process.argv[2] || "durgesh"; // Pass plain password as a command-line argument or use default
+const hashedPassword =
+  process.argv[3] ||
+  "$2b$10$p5hvKDbqFu93iPiqbl1FTOaxLePhOzHhvo/4THeE9VIX/ZDmFsese"; // Pass hashed password as a command-line argument or use default
+
+testPassword(plainPassword, hashedPassword);
+
+module.exports = testPassword;

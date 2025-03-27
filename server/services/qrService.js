@@ -1,40 +1,49 @@
 const QRCode = require('qrcode');
 const { parse } = require('url');
 
-// Function to generate a QR code
+/**
+ * Generate a QR code as a data URL (base64 image).
+ * @param {string} data - The data to encode in the QR code.
+ * @returns {Promise<string>} - The generated QR code as a base64 string.
+ */
 const generateQRCode = async (data) => {
   try {
-    // Generate QR code as a data URL (base64 image)
     const qrCode = await QRCode.toDataURL(data);
     console.log('QR Code generated successfully');
     return qrCode;
   } catch (err) {
-    console.error('Error generating QR Code:', err);
+    console.error('Error generating QR Code:', err.message);
     throw new Error('Failed to generate QR Code');
   }
 };
 
-// Function to decode a QR code (if needed for server-side decoding)
+/**
+ * Decode a QR code (placeholder for server-side decoding).
+ * @param {string} qrCodeDataURL - The QR code data URL to decode.
+ * @returns {null} - Decoding is not implemented on the server.
+ */
 const decodeQRCode = async (qrCodeDataURL) => {
   try {
-    // Decode the QR code (if you have a decoding library or service)
-    // For now, this is a placeholder as QR decoding is typically done on the frontend
     console.log('Decoding QR Code is not implemented on the server');
-    return null;
+    return null; // Placeholder for decoding logic
   } catch (err) {
-    console.error('Error decoding QR Code:', err);
+    console.error('Error decoding QR Code:', err.message);
     throw new Error('Failed to decode QR Code');
   }
 };
 
-// Function to parse QR code data (e.g., extract batch ID from a URL)
+/**
+ * Parse QR code data (e.g., extract batch ID from a URL).
+ * @param {string} qrCodeData - The QR code data to parse.
+ * @returns {Object} - The parsed query parameters from the QR code data.
+ */
 const parseQRCodeData = (qrCodeData) => {
   try {
     const parsedData = parse(qrCodeData, true); // Parse the QR code data as a URL
     console.log('Parsed QR Code data:', parsedData);
     return parsedData.query; // Return the query parameters (e.g., batchId)
   } catch (err) {
-    console.error('Error parsing QR Code data:', err);
+    console.error('Error parsing QR Code data:', err.message);
     throw new Error('Failed to parse QR Code data');
   }
 };

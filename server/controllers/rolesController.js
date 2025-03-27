@@ -2,8 +2,6 @@ const { RolesContract, web3 } = require("../utils/web3");
 
 /**
  * Assign a role to a user.
- * @param {Object} req - The request object containing `address` and `role`.
- * @param {Object} res - The response object.
  */
 const assignRole = async (req, res) => {
   try {
@@ -17,9 +15,8 @@ const assignRole = async (req, res) => {
       return res.status(400).json({ error: "Invalid role. Role must be a number." });
     }
 
-    // Get the admin account to send the transaction
-    const accounts = await web3.eth.getAccounts();
-    const adminAccount = accounts[0];
+    // Get the admin account from the authenticated user
+    const adminAccount = req.user.address; // Assuming `req.user` contains the authenticated user's details
 
     // Call the smart contract method to assign the role
     await RolesContract.methods.assignRole(address, role).send({ from: adminAccount });
@@ -33,8 +30,6 @@ const assignRole = async (req, res) => {
 
 /**
  * Revoke a role from a user.
- * @param {Object} req - The request object containing `address`.
- * @param {Object} res - The response object.
  */
 const revokeRole = async (req, res) => {
   try {
@@ -45,9 +40,8 @@ const revokeRole = async (req, res) => {
       return res.status(400).json({ error: "Invalid Ethereum address" });
     }
 
-    // Get the admin account to send the transaction
-    const accounts = await web3.eth.getAccounts();
-    const adminAccount = accounts[0];
+    // Get the admin account from the authenticated user
+    const adminAccount = req.user.address;
 
     // Call the smart contract method to revoke the role
     await RolesContract.methods.revokeRole(address).send({ from: adminAccount });
@@ -61,8 +55,6 @@ const revokeRole = async (req, res) => {
 
 /**
  * Fetch the role of a specific user.
- * @param {Object} req - The request object containing `address`.
- * @param {Object} res - The response object.
  */
 const getRole = async (req, res) => {
   try {
@@ -85,8 +77,6 @@ const getRole = async (req, res) => {
 
 /**
  * Transfer admin privileges to another address.
- * @param {Object} req - The request object containing `newAdmin`.
- * @param {Object} res - The response object.
  */
 const transferAdmin = async (req, res) => {
   try {
@@ -97,9 +87,8 @@ const transferAdmin = async (req, res) => {
       return res.status(400).json({ error: "Invalid Ethereum address" });
     }
 
-    // Get the current admin account to send the transaction
-    const accounts = await web3.eth.getAccounts();
-    const adminAccount = accounts[0];
+    // Get the current admin account from the authenticated user
+    const adminAccount = req.user.address;
 
     // Call the smart contract method to transfer admin privileges
     await RolesContract.methods.transferAdmin(newAdmin).send({ from: adminAccount });

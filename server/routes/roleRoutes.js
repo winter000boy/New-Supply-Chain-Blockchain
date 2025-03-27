@@ -3,6 +3,7 @@ const { authenticate, authorize } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
+
 // Admin-only route
 router.get('/admin', authenticate, authorize(['admin']), (req, res) => {
   res.json({ message: 'Welcome, Admin!' });

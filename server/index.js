@@ -1,13 +1,23 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-require("dotenv").config(); // Load environment variables
+const dotenv = require("dotenv");
+const morgan = require("morgan"); // Logging middleware
+
+dotenv.config(); // Load environment variables
+
+// Validate required environment variables
+if (!process.env.PORT || !process.env.JWT_SECRET || !process.env.BLOCKCHAIN_URL) {
+  console.error("Error: Missing required environment variables.");
+  process.exit(1); // Exit the application if required variables are missing
+}
 
 const app = express();
 
 // Middleware
 app.use(cors()); // Enable Cross-Origin Resource Sharing
 app.use(bodyParser.json()); // Parse JSON request bodies
+app.use(morgan("dev")); // Log HTTP requests
 
 // Import routes
 const rolesRoutes = require("./routes/roles");
@@ -24,6 +34,11 @@ app.get("/", (req, res) => {
   res.status(200).send("Backend server for Coffee Supply Chain is running!");
 });
 
+// Handle unknown routes
+app.use((req, res) => {
+  res.status(404).json({ error: "Route not found" });
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error("Error:", err.message);
@@ -32,6 +47,15 @@ app.use((err, req, res, next) => {
 
 // Start the server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+});
+
+// Graceful shutdown
+process.on("SIGINT", () => {
+  console.log("Shutting down server...");
+  server.close(() => {
+    console.log("Server closed.");
+    process.exit(0);
+  });
 });

@@ -14,9 +14,8 @@ const addMedicine = async (req, res) => {
       return res.status(400).json({ error: "All fields are required" });
     }
 
-    // Get the supplier account to send the transaction
-    const accounts = await web3.eth.getAccounts();
-    const supplierAccount = accounts[0]; // Replace with dynamic account if needed
+    // Get the supplier account from the authenticated user
+    const supplierAccount = req.user.address; // Assuming `req.user` contains the authenticated user's details
 
     // Call the smart contract method to add the medicine
     await SupplyChainContract.methods
@@ -44,9 +43,8 @@ const updateManufacturingDetails = async (req, res) => {
       return res.status(400).json({ error: "Medicine ID and Manufacturer ID are required" });
     }
 
-    // Get the manufacturer account to send the transaction
-    const accounts = await web3.eth.getAccounts();
-    const manufacturerAccount = accounts[0]; // Replace with dynamic account if needed
+    // Get the manufacturer account from the authenticated user
+    const manufacturerAccount = req.user.address;
 
     // Call the smart contract method to update manufacturing details
     await SupplyChainContract.methods
@@ -98,9 +96,8 @@ const markAsSold = async (req, res) => {
       return res.status(400).json({ error: "Medicine ID is required" });
     }
 
-    // Get the retailer account to send the transaction
-    const accounts = await web3.eth.getAccounts();
-    const retailerAccount = accounts[0]; // Replace with dynamic account if needed
+    // Get the retailer account from the authenticated user
+    const retailerAccount = req.user.address;
 
     // Call the smart contract method to mark the medicine as sold
     await SupplyChainContract.methods.markAsSold(medicineId).send({ from: retailerAccount });

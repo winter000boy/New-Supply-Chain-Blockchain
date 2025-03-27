@@ -5,161 +5,66 @@ const Web3 = require('web3');
 const web3 = new Web3(new Web3.providers.HttpProvider(process.env.BLOCKCHAIN_URL));
 
 // Smart contract details
-const contractABI = [
-  {
-    "inputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "oldAdmin",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "newAdmin",
-        "type": "address"
-      }
-    ],
-    "name": "AdminTransferred",
-    "type": "event"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "batchId",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "data",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "role",
-        "type": "string"
-      }
-    ],
-    "name": "logBatchData",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "batchId",
-        "type": "string"
-      }
-    ],
-    "name": "getBatchData",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "batchId",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "updatedData",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "role",
-        "type": "string"
-      }
-    ],
-    "name": "updateBatchData",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  }
-];
-const contractAddress = '0xa6CCc594d9081847A1226C8aba0f503bf123D304'; // Replace with your deployed contract address
+const contractABI = JSON.parse(process.env.CONTRACT_ABI); // Load ABI from .env or configuration
+const contractAddress = process.env.CONTRACT_ADDRESS; // Load contract address from .env
 
 // Initialize the smart contract
 const contract = new web3.eth.Contract(contractABI, contractAddress);
 
-// Function to log data on the blockchain
-const logData = async (batchId, data, role) => {
+/**
+ * Log data on the blockchain.
+ * @param {string} batchId - The batch ID to log.
+ * @param {string} data - The data to log.
+ * @param {string} sender - The address of the sender.
+ * @returns {Promise<Object>} - The transaction receipt.
+ */
+const logData = async (batchId, data, sender) => {
   try {
-    const accounts = await web3.eth.getAccounts(); // Get available accounts
-    const sender = accounts[0]; // Use the first account as the sender
-
-    // Call the smart contract function to log data
     const receipt = await contract.methods
-      .logBatchData(batchId, data, role)
+      .logBatchData(batchId, data, sender)
       .send({ from: sender, gas: 3000000 });
 
     console.log('Data logged on blockchain:', receipt);
     return receipt;
   } catch (err) {
-    console.error('Error logging data on blockchain:', err);
+    console.error('Error logging data on blockchain:', err.message);
     throw new Error('Failed to log data on blockchain');
   }
 };
 
-// Function to retrieve data from the blockchain
+/**
+ * Retrieve data from the blockchain.
+ * @param {string} batchId - The batch ID to retrieve.
+ * @returns {Promise<Object>} - The retrieved data.
+ */
 const getData = async (batchId) => {
   try {
-    // Call the smart contract function to retrieve data
     const data = await contract.methods.getBatchData(batchId).call();
     console.log('Data retrieved from blockchain:', data);
     return data;
   } catch (err) {
-    console.error('Error retrieving data from blockchain:', err);
+    console.error('Error retrieving data from blockchain:', err.message);
     throw new Error('Failed to retrieve data from blockchain');
   }
 };
 
-// Function to update data on the blockchain
-const updateData = async (batchId, updatedData, role) => {
+/**
+ * Update data on the blockchain.
+ * @param {string} batchId - The batch ID to update.
+ * @param {string} updatedData - The updated data.
+ * @param {string} sender - The address of the sender.
+ * @returns {Promise<Object>} - The transaction receipt.
+ */
+const updateData = async (batchId, updatedData, sender) => {
   try {
-    const accounts = await web3.eth.getAccounts(); // Get available accounts
-    const sender = accounts[0]; // Use the first account as the sender
-
-    // Call the smart contract function to update data
     const receipt = await contract.methods
-      .updateBatchData(batchId, updatedData, role)
+      .updateBatchData(batchId, updatedData, sender)
       .send({ from: sender, gas: 3000000 });
 
     console.log('Data updated on blockchain:', receipt);
     return receipt;
   } catch (err) {
-    console.error('Error updating data on blockchain:', err);
+    console.error('Error updating data on blockchain:', err.message);
     throw new Error('Failed to update data on blockchain');
   }
 };

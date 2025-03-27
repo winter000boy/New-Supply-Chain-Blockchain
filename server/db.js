@@ -1,7 +1,6 @@
 require('dotenv').config(); // Load environment variables from .env
 const { Pool } = require('pg');
 
-// Configure the PostgreSQL connection
 const pool = new Pool({
   user: process.env.DB_USER, // PostgreSQL username from .env
   host: process.env.DB_HOST, // Database host from .env
