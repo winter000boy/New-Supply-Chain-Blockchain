@@ -29,123 +29,89 @@
 
 This project is a **Blockchain-based Pharma Supply Chain Management System** that leverages smart contracts to ensure transparency, security, and efficiency in the supply chain. It tracks the journey of pharmaceutical products from raw material suppliers to retailers, ensuring accountability and trust.
 
+🔗 **GitHub Repository:** [New-Supply-Chain-Blockchain](https://github.com/winter000boy/New-Supply-Chain-Blockchain.git)
+
 ---
 
 ## 🚀 Features
 
 - **Role Management**: Assign roles like Raw Material Supplier, Manufacturer, Distributor, and Retailer.
 - **Medicine Tracking**: Track the history and current status of medicines in the supply chain.
-- **Blockchain Transparency**: Ensure secure and immutable records using Ethereum blockchain.
+- **Blockchain Transparency**: Ensure secure and immutable records using the Ethereum blockchain.
 - **Smart Contracts**: Manage supply chain operations with Solidity-based smart contracts.
 - **User-Friendly Interface**: React-based frontend for seamless interaction with the blockchain.
 
 ---
 
-## 🛠️ Architecture
+## 🛠️ Installation & Setup
 
-- **Frontend**: Built with React.js for a responsive and user-friendly interface.
-- **Backend**: Smart contracts written in Solidity and deployed using Truffle.
-- **Blockchain**: Uses Ganache for local blockchain development and testing.
-- **Web3.js**: Facilitates interaction between the frontend and the Ethereum blockchain.
+### Step 1: Install Prerequisites
+
+1. **VS Code** → [Download](https://code.visualstudio.com/)  
+2. **Node.js** → [Download](https://nodejs.org/) → Check version: `node -v`  
+3. **Git** → [Download](https://git-scm.com/downloads) → Check version: `git --version`  
+4. **Ganache** → [Download](https://trufflesuite.com/ganache/)  
+5. **MetaMask** → Install as a [browser extension](https://metamask.io/)  
+
+### Step 2: Clone the Repository
+```sh
+git clone https://github.com/winter000boy/New-Supply-Chain-Blockchain.git
+cd New-Supply-Chain-Blockchain
+```
+
+### Step 3: Install Dependencies
+```sh
+npm install -g truffle
+npm install
+cd client && npm install
+cd ../server && npm install
+```
+
+### Step 4: Compile & Deploy Smart Contracts
+```sh
+truffle compile
+truffle migrate
+```
 
 ---
 
-## 📂 Project Structure
+## 🏃‍♂️ Running the DApp
 
-### Step1.
-## Installation and Setup
+### Start Backend
+```sh
+cd server
+npm start
+```
 
-* **VSCODE** : VSCode can be downloaded from https://code.visualstudio.com/
-* **Node.js** : Download the latest version of Node.js from https://nodejs.org/ and after installation check     Version using terimal: node -v .
-* **Git** : Download the latest version of Git from the official website at https://git-scm.com/downloads and   check Version using terimal: git --version.
+### Start Frontend
+```sh
+cd client
+npm start
+```
+The app will run at **http://localhost:3000**.
 
-* **Ganache** : Download the latest version of Ganache from the official website at https://www.trufflesuite.com/ganache.
-* **MetaMask** : can be installed as a browser extension from the Chrome Web Store or Firefox Add-ons store.
-  
-### Step2.
-## Create,Compile & Deploy Smart Contract. 
+---
 
-* Open VScode and open VScode Terimal by Ctrl + ' .
-* **Clone Project** Type the following command and press Enter : git clone : ` https://github.com/faizack619/Supply-Chain-Blockchain.git  
-* **Install truffle** : Type the following command and press Enter: `npm install -g truffle`
-* **Install dependencies** : Type the following command and press Enter: `npm i`
-* **File structure for  DApp** : 
-  
-    **contracts**: This folder contains the Solidity smart contracts for the DApp. The Migrations.sol contract is automatically created by Truffle and is used for managing migrations.
+## 🔗 Connect MetaMask with Ganache
 
-    **migrations**: This folder contains the JavaScript migration files used to deploy the smart contracts to the blockchain network.
+1. **Start Ganache** and copy the **RPC URL**.
+2. **Open MetaMask**, go to **Networks**, and add a **Custom RPC**.
+3. **Paste the Ganache RPC URL** and save.
+4. **Import an Account**:
+   - Copy a **Private Key** from Ganache.
+   - In MetaMask, go to **Import Account** and paste the key.
 
-    **test**: This folder contains the JavaScript test files used to test the smart contracts.
+---
 
-    **truffle-config.js**: This file contains the configuration for the Truffle project, including the blockchain network to be used and any necessary settings.
+## 📜 License
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
-    **package.jso**n: This file contains information about the dependencies and scripts used in the project.
+---
 
-    **package-lock.json**: This file is generated automatically and contains the exact version of each dependency used in the project.
+## 📚 Documentation
 
-    **Client**s: This Folder contains the client-side code, typically HTML, CSS, and JavaScript, can be organized into a client folder.
-* **Compile the smart contract** :  In the terminal, use the following command to compile the smart contract: `truffle compile` 
-* **Deploy the smart contract** :
-   
-    * After Compile We Need To Deploy Your Smart Contract on Blockchain. In Our Case We are Using Ganache Which is personal blockchain for Ethereum development, used to test and develop Smart Contracts.
+- [Solidity Docs](https://docs.soliditylang.org/en/v0.8.4/)
+- [React Docs](https://reactjs.org/docs/getting-started.html)
+- [Truffle Docs](https://trufflesuite.com/docs/truffle/)
+- [Ganache Docs](https://trufflesuite.com/docs/ganache/overview/)
 
-    * Open Ganache and create new WorkSpace.Copy Rpc Server Address.
-
-    * ![https://miro.medium.com/max/1248/1*4rzNT0muOXelP22Ky9178g.png](https://miro.medium.com/max/1248/1*4rzNT0muOXelP22Ky9178g.png)
-
-    * The RPC server is used to allow applications to communicate with the Ethereum blockchain and execute smart contract transactions, query the state of the blockchain, and interact with the Ethereum network.
-
-    * Now to add Rcp address in our truffle-config.js and the replace host address and port address with Our Ganache Rcp.
-
-    * ![https://developers.rsk.co/assets/img/tutorials/truffle-test/image-04.png](https://developers.rsk.co/assets/img/tutorials/truffle-test/image-04.png)
-  
-    * After Changing RCP address.Open terminal and run this cmd : `truffle migrate`.
-    * This Command Will deploye Smart Contract to Blockchain.
-
-### Step 3.
-## Run DAPP. 
-* Open a second terminal and enter the client folder
-  * `cd client`
- 
-* Install all packages in the package.json file
-  * `npm i`
-  
-* Install Web3 in the package.json file
-  * `npm install -save web3`
-
-
-* Run this Command :
-  * `npm`
- 
-* Run the app 
-  * `npm start`
-
-* The app gets hosted by default at port 3000.
-
-### Step 4.
-## Connect Meta Musk with Ganache. 
-
-![https://media.licdn.com/dms/image/C4D12AQHMatPDpLjwkA/article-cover_image-shrink_720_1280/0/1547586411238?e=2147483647&v=beta&t=UDYOS05BSkdrYoGOR5LW7v2uHz1Sca5uNzzWLrQG1nk](https://media.licdn.com/dms/image/C4D12AQHMatPDpLjwkA/article-cover_image-shrink_720_1280/0/1547586411238?e=2147483647&v=beta&t=UDYOS05BSkdrYoGOR5LW7v2uHz1Sca5uNzzWLrQG1nk)
-1. Start Ganache: Start the Ganache application and make note of the RPC server URL and port number.
-
-1. Connect MetaMask: Open MetaMask in your browser and click on the network dropdown in the top-right corner.
-![https://metamask.zendesk.com/hc/article_attachments/10080831633947](https://metamask.zendesk.com/hc/article_attachments/10080831633947)![https://kimsereylam.com/assets/posts/2022-02-25-setup-local-development-blockchain-with-ganache/ganache_network.png](https://kimsereylam.com/assets/posts/2022-02-25-setup-local-development-blockchain-with-ganache/ganache_network.png)
-Select "Custom RPC" and enter the RPC server URL and port number for your Ganache instance. Click "Save".
-
-1. Import an account: In Ganache, click on the "Accounts" tab and select the first account listed. Click on the "Copy" button next to the "Private Key" field copy the private key.
-     ![https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoSc_d4naUQwI8qo8ClC1NXa4aJA7blvrgn4Xq1looUOiWY3wTGd5x8g5fgCrMzyrOzQ8&usqp=CAUto](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoSc_d4naUQwI8qo8ClC1NXa4aJA7blvrgn4Xq1looUOiWY3wTGd5x8g5fgCrMzyrOzQ8&usqp=CAU)
- 2. In MetaMask, click on the three dots in the top-right corner, select "Import Account", and paste the private key into the private key field. Click "Import".
-
-     ![https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs76Q1oyMK717kRZ8FMC_i2VCstu8H2yZFqlfgccSsalxBXWm2PBwzS-peIFv4DqGos9g&usqp=CAU](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs76Q1oyMK717kRZ8FMC_i2VCstu8H2yZFqlfgccSsalxBXWm2PBwzS-peIFv4DqGos9g&usqp=CAU)
- 3. Add All participate(Raw Material,Supplier,Manufacture,Retail). by following above Step
-
-### License
-This project uses an [MIT](https://opensource.org/licenses/MIT) license.
-## Documentation to help with Solidity
-https://docs.soliditylang.org/en/v0.8.4/
-## Documentation to help with React
-https://reactjs.org/docs/getting-started.html
-## Documentation to help with Truffle
-https://www.trufflesuite.com/docs/truffle/reference/configuration
-## Documentation to help with Ganache-cli
-https://www.trufflesuite.com/docs/ganache/overview
