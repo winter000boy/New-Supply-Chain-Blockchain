@@ -16,7 +16,7 @@
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.14.1",
     "qrcode": "^1.5.4",
-    "web3": "^1.10.5"
+    "web3": "^1.8.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.1",
