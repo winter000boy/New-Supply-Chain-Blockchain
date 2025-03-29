@@ -1,0 +1,58 @@
+/* Container Styles */
+.medicine-page-container {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title */
+  .medicine-page-title {
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 2rem;
+  }
+  
+  /* Description */
+  .medicine-page-description {
+    color: #555;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+  
+  /* Section Styles */
+  .medicine-form-section,
+  .medicine-list-section {
+    margin-bottom: 40px;
+  }
+  
+  .section-title {
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .medicine-page-container {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    .medicine-page-title {
+      font-size: 1.8rem;
+    }
+  
+    .medicine-page-description {
+      font-size: 1rem;
+    }
+  
+    .section-title {
+      font-size: 1.3rem;
+    }
+  }

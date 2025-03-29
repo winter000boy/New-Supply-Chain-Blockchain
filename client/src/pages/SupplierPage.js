@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import QRCode from 'qrcode.react';
 import axios from 'axios';
+import './SupplierPage.css'; // Import the CSS file for styling
 
 const SupplierPage = () => {
   const [batchId, setBatchId] = useState('');
   const [data, setData] = useState('');
   const [qrCode, setQrCode] = useState('');
+  const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
   // Handle form submission
@@ -13,12 +15,13 @@ const SupplierPage = () => {
     e.preventDefault();
 
     if (!batchId || !data) {
-      alert('Please fill in all fields.');
+      setMessage('Please fill in all fields.');
       return;
     }
 
     try {
       setLoading(true);
+      setMessage('');
 
       // Send batch details to the backend
       const response = await axios.post('http://localhost:5000/api/supply-chain/supplier/log', {
@@ -29,70 +32,60 @@ const SupplierPage = () => {
 
       // Set the QR code from the response
       setQrCode(response.data.qrCode);
-      alert('Batch details logged successfully!');
+      setMessage('Batch details logged successfully!');
     } catch (err) {
       console.error('Error logging batch details:', err);
-      alert('Failed to log batch details. Please try again.');
+      setMessage('Failed to log batch details. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '20px' }}>
-      <h1 style={{ color: '#007BFF' }}>Supplier Dashboard</h1>
-      <p>Log batch details and generate a QR code for tracking.</p>
+    <div className="supplier-page-container">
+      <h1 className="supplier-page-title">Supplier Dashboard</h1>
+      <p className="supplier-page-description">Log batch details and generate a QR code for tracking.</p>
 
-      <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}>
-        <div style={{ marginBottom: '10px' }}>
+      <form onSubmit={handleSubmit} className="supplier-form">
+        <div className="form-group">
+          <label htmlFor="batchId">Batch ID:</label>
           <input
+            id="batchId"
             type="text"
             placeholder="Enter Batch ID"
             value={batchId}
             onChange={(e) => setBatchId(e.target.value)}
-            style={{
-              padding: '10px',
-              width: '300px',
-              border: '1px solid #ccc',
-              borderRadius: '5px',
-            }}
+            className="form-input"
+            aria-label="Batch ID"
           />
         </div>
-        <div style={{ marginBottom: '10px' }}>
+        <div className="form-group">
+          <label htmlFor="data">Batch Details:</label>
           <textarea
+            id="data"
             placeholder="Enter Batch Details"
             value={data}
             onChange={(e) => setData(e.target.value)}
-            style={{
-              padding: '10px',
-              width: '300px',
-              height: '100px',
-              border: '1px solid #ccc',
-              borderRadius: '5px',
-            }}
+            className="form-textarea"
+            aria-label="Batch Details"
           />
         </div>
         <button
           type="submit"
-          style={{
-            padding: '10px 20px',
-            backgroundColor: '#007BFF',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-          }}
-          disabled={loading}
+          className="form-button"
+          disabled={loading} // Disable button while loading
         >
           {loading ? 'Logging...' : 'Log Batch & Generate QR Code'}
         </button>
       </form>
 
+      {message && <p className="supplier-message">{message}</p>}
+
       {qrCode && (
-        <div style={{ marginTop: '20px' }}>
+        <div className="qr-code-container">
           <h3>Generated QR Code:</h3>
           <QRCode value={qrCode} size={200} />
-          <p style={{ marginTop: '10px', color: '#555' }}>Batch ID: {batchId}</p>
+          <p className="qr-code-batch-id">Batch ID: {batchId}</p>
         </div>
       )}
     </div>

@@ -22,5 +22,9 @@
   "display": "standalone",
   "theme_color": "#007bff",
   "background_color": "#ffffff",
-  "description": "A blockchain-based Pharma Supply Chain Management System for tracking and managing medicines."
+  "description": "A blockchain-based Pharma Supply Chain Management System for tracking and managing medicines.",
+  "lang": "en",
+  "orientation": "portrait",
+  "scope": "/",
+  "categories": ["business", "productivity", "health", "blockchain"]
 }

@@ -1,0 +1,86 @@
+/* Container Styles */
+.medicine-form-container {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title */
+  .medicine-form-title {
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+  }
+  
+  /* Form Group */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .form-input:focus {
+    box-shadow: 0 0 5px #007bff;
+    outline: none;
+  }
+  
+  /* Button */
+  .medicine-form-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .medicine-form-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  .medicine-form-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Message */
+  .medicine-form-message {
+    margin-top: 15px;
+    color: #ff4d4d;
+    font-weight: bold;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .medicine-form-container {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    .medicine-form-title {
+      font-size: 1.5rem;
+    }
+  }

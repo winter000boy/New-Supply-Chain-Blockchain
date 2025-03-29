@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { getMedicines } from "../services/medicineService";
+import "./MedicineList.css"; // Import the CSS file for styling
 
 const MedicineList = () => {
   const [medicines, setMedicines] = useState([]);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false); // Loading state
 
   useEffect(() => {
     const fetchMedicines = async () => {
+      setLoading(true); // Start loading
+      setMessage(""); // Clear previous messages
+
       try {
         const response = await getMedicines();
         setMedicines(response.data.medicines);
       } catch (err) {
         setMessage(`Error fetching medicines: ${err.response?.data?.error || err.message}`);
+      } finally {
+        setLoading(false); // Stop loading
       }
     };
 
@@ -19,11 +26,12 @@ const MedicineList = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Medicine List</h2>
-      {message && <p>{message}</p>}
+    <div className="medicine-list-container">
+      <h2 className="medicine-list-title">Medicine List</h2>
+      {loading && <p className="loading-message">Loading medicines...</p>}
+      {message && <p className="error-message">{message}</p>}
       {medicines.length > 0 ? (
-        <table>
+        <table className="medicine-table">
           <thead>
             <tr>
               <th>ID</th>
@@ -48,7 +56,7 @@ const MedicineList = () => {
           </tbody>
         </table>
       ) : (
-        <p>No medicines found.</p>
+        !loading && <p className="no-data-message">No medicines found.</p>
       )}
     </div>
   );

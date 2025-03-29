@@ -5,12 +5,28 @@
   <meta charset="utf-8" />
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Pharma Supply Chain Management System" />
+  <meta name="theme-color" content="#007bff" />
+  <meta name="description" content="A blockchain-based Pharma Supply Chain Management System for tracking and managing medicines." />
+  <meta name="keywords" content="Pharma, Supply Chain, Blockchain, Medicine Tracking, QR Code" />
+  <meta name="author" content="Your Name or Organization" />
+
+  <!-- Open Graph Meta Tags for Social Sharing -->
+  <meta property="og:title" content="Pharma Supply Chain Management System" />
+  <meta property="og:description" content="Track and manage medicines using blockchain technology." />
+  <meta property="og:image" content="%PUBLIC_URL%/logo512.png" />
+  <meta property="og:url" content="https://your-app-url.com" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Pharma Supply Chain Management System" />
+  <meta name="twitter:description" content="Track and manage medicines using blockchain technology." />
+  <meta name="twitter:image" content="%PUBLIC_URL%/logo512.png" />
+
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-  <!-- Add external libraries for QR code scanning -->
+  <!-- External Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/html5-qrcode/minified/html5-qrcode.min.js"></script>
 
   <title>Pharma Supply Chain</title>
@@ -26,32 +42,6 @@
     <div id="qr-reader" style="width: 300px;"></div>
     <div id="qr-reader-results"></div>
   </div>
-
-  <!-- Add a script to initialize the QR code scanner -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const qrScannerContainer = document.getElementById("qr-scanner-container");
-      const qrReader = document.getElementById("qr-reader");
-      const qrReaderResults = document.getElementById("qr-reader-results");
-
-      // Initialize the QR code scanner
-      const html5QrCode = new Html5Qrcode("qr-reader");
-      const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-        console.log(`QR Code scanned: ${decodedText}`);
-        qrReaderResults.innerHTML = `<p>Scanned Data: ${decodedText}</p>`;
-        // You can send the scanned data to your backend here
-        qrScannerContainer.style.display = "none"; // Hide scanner after successful scan
-      };
-
-      const config = { fps: 10, qrbox: 250 };
-
-      // Start the scanner when the container is visible
-      if (qrScannerContainer.style.display !== "none") {
-        html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback)
-          .catch(err => console.error("QR Code Scanner Error:", err));
-      }
-    });
-  </script>
 
   <!--
       This HTML file is a template.

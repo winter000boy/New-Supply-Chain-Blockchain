@@ -1,0 +1,41 @@
+/* Container Styles */
+.roles-page-container {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title */
+  .roles-page-title {
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 2rem;
+  }
+  
+  /* Description */
+  .roles-page-description {
+    color: #555;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .roles-page-container {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    .roles-page-title {
+      font-size: 1.8rem;
+    }
+  
+    .roles-page-description {
+      font-size: 1rem;
+    }
+  }

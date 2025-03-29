@@ -1,34 +1,44 @@
 /* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     padding-top: 60px;
-    background-color: #f4f4f9;
-    flex-direction: column;
+    background: linear-gradient(135deg, #f4f4f9, #e8f0fe);
     color: #333;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 h1, h2, h3 {
     color: #007bff;
     text-align: center;
+    font-weight: 600;
+    animation: fadeIn 1s ease-in-out;
 }
 
 p {
     text-align: center;
     font-size: 1.1rem;
     color: #555;
+    animation: fadeIn 1.2s ease-in-out;
 }
 
 /* Navbar Styles */
 nav {
-    background-color: #007bff;
-    padding: 10px 20px;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    animation: slideDown 0.8s ease-in-out;
 }
 
 nav ul {
@@ -53,37 +63,41 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #0056b3;
+    background-color: #003d80;
     transform: scale(1.1);
 }
 
 /* Footer Styles */
 footer {
-    background-color: #f8f9fa;
+    background: linear-gradient(90deg, #f8f9fa, #e9ecef);
     text-align: center;
-    padding: 10px 0;
+    padding: 15px 0;
     border-top: 1px solid #ddd;
     position: relative;
     bottom: 0;
     width: 100%;
     color: #555;
+    font-size: 0.9rem;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 /* Button Styles */
 button {
-    background-color: #007bff;
+    background: linear-gradient(90deg, #007bff, #0056b3);
     color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #003d80;
     transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 button:disabled {
@@ -94,17 +108,18 @@ button:disabled {
 /* Form Styles */
 input, select {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 input:focus, select:focus {
-    box-shadow: 0 0 5px #007bff;
+    box-shadow: 0 0 8px #007bff;
     outline: none;
+    transform: scale(1.02);
 }
 
 label {
@@ -121,16 +136,21 @@ table {
     font-size: 1rem;
     text-align: left;
     animation: fadeIn 0.8s ease-in-out;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 table th, table td {
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 12px;
 }
 
 table th {
-    background-color: #007bff;
+    background: linear-gradient(90deg, #007bff, #0056b3);
     color: white;
+    font-weight: bold;
 }
 
 table tr:nth-child(even) {
@@ -148,7 +168,7 @@ table tr:hover {
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: white;
+    background: white;
     margin: 20px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -162,6 +182,7 @@ table tr:hover {
 
 .card h3 {
     color: #007bff;
+    font-weight: bold;
 }
 
 .card p {
@@ -172,7 +193,7 @@ table tr:hover {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 15px;
-    background-color: #007bff;
+    background: linear-gradient(90deg, #007bff, #0056b3);
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -180,13 +201,9 @@ table tr:hover {
 }
 
 .card a:hover {
-    background-color: #0056b3;
+    background-color: #003d80;
     transform: scale(1.05);
 }
-
-.App {
-    flex: 1; /* Allow the main content to grow and push the footer to the bottom */
-  }
 
 /* Animations */
 @keyframes fadeIn {
@@ -196,6 +213,15 @@ table tr:hover {
     }
     to {
         opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
         transform: translateY(0);
     }
 }

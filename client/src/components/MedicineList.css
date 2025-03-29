@@ -1,0 +1,81 @@
+/* Container Styles */
+.medicine-list-container {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title */
+  .medicine-list-title {
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+  }
+  
+  /* Loading and Error Messages */
+  .loading-message {
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .error-message {
+    color: #ff4d4d;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .no-data-message {
+    color: #555;
+    font-size: 1rem;
+    margin-top: 20px;
+  }
+  
+  /* Table Styles */
+  .medicine-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 1rem;
+    text-align: left;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .medicine-table th, .medicine-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+  }
+  
+  .medicine-table th {
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    color: white;
+    font-weight: bold;
+  }
+  
+  .medicine-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .medicine-table tr:hover {
+    background-color: #ddd;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .medicine-list-container {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    .medicine-table {
+      font-size: 0.9rem;
+    }
+  }

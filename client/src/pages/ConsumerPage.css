@@ -1,0 +1,76 @@
+/* Container Styles */
+.consumer-page-container {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title */
+  .consumer-page-title {
+    color: #6f42c1;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 2rem;
+  }
+  
+  /* Description */
+  .consumer-page-description {
+    color: #555;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+  
+  /* QR Scanner Container */
+  .qr-scanner-container {
+    margin-top: 20px;
+  }
+  
+  /* Loading Message */
+  .loading-message {
+    color: #007bff;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  
+  /* Message */
+  .consumer-message {
+    margin-top: 15px;
+    color: #ff4d4d;
+    font-weight: bold;
+  }
+  
+  /* Product History */
+  .product-history-container {
+    margin-top: 20px;
+    text-align: left;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-history-container h3 {
+    color: #6f42c1;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .consumer-page-container {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    .consumer-page-title {
+      font-size: 1.8rem;
+    }
+  
+    .consumer-page-description {
+      font-size: 1rem;
+    }
+  }

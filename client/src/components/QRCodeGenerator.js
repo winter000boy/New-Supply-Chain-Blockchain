@@ -1,53 +1,60 @@
 import React, { useState } from 'react';
 import QRCode from 'qrcode.react';
+import './QRCodeGenerator.css'; // Import the CSS file for styling
 
 const QRCodeGenerator = () => {
   const [inputData, setInputData] = useState('');
   const [qrCodeData, setQRCodeData] = useState('');
+  const [error, setError] = useState('');
 
   // Handle input change
   const handleInputChange = (e) => {
     setInputData(e.target.value);
+    setError(''); // Clear error message on input change
   };
 
   // Generate QR Code
   const generateQRCode = () => {
     if (inputData.trim() === '') {
-      alert('Please enter some data to generate a QR code.');
+      setError('Please enter some data to generate a QR code.');
       return;
     }
     setQRCodeData(inputData);
   };
 
+  // Download QR Code as an image
+  const downloadQRCode = () => {
+    const canvas = document.querySelector('canvas');
+    const pngUrl = canvas.toDataURL('image/png');
+    const downloadLink = document.createElement('a');
+    downloadLink.href = pngUrl;
+    downloadLink.download = 'qrcode.png';
+    downloadLink.click();
+  };
+
   return (
-    <div style={{ textAlign: 'center', marginTop: '20px' }}>
+    <div className="qr-generator-container">
       <h2>QR Code Generator</h2>
       <input
         type="text"
         placeholder="Enter data for QR code"
         value={inputData}
         onChange={handleInputChange}
-        style={{ padding: '10px', width: '300px', marginBottom: '10px' }}
+        className="qr-input"
+        aria-label="Enter data for QR code"
       />
-      <br />
-      <button
-        onClick={generateQRCode}
-        style={{
-          padding: '10px 20px',
-          backgroundColor: '#007BFF',
-          color: '#fff',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer',
-        }}
-      >
+      {error && <p className="qr-error">{error}</p>}
+      <button onClick={generateQRCode} className="qr-button">
         Generate QR Code
       </button>
-      <div style={{ marginTop: '20px' }}>
+      <div className="qr-code-display">
         {qrCodeData && (
           <div>
             <h3>Generated QR Code:</h3>
             <QRCode value={qrCodeData} size={200} />
+            <button onClick={downloadQRCode} className="qr-download-button">
+              Download QR Code
+            </button>
           </div>
         )}
       </div>

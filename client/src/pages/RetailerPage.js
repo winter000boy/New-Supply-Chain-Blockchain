@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import QRScanner from '../components/QRScanner';
 import axios from 'axios';
+import './RetailerPage.css'; // Import the CSS file for styling
 
 const RetailerPage = () => {
   const [batchId, setBatchId] = useState('');
   const [batchDetails, setBatchDetails] = useState(null);
   const [storageDetails, setStorageDetails] = useState('');
+  const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
   // Handle QR code scan
@@ -13,13 +15,14 @@ const RetailerPage = () => {
     try {
       setBatchId(scannedData);
       setLoading(true);
+      setMessage('');
 
       // Fetch batch details from the backend
       const response = await axios.get(`http://localhost:5000/api/supply-chain/batch/${scannedData}`);
       setBatchDetails(response.data.data);
     } catch (err) {
       console.error('Error fetching batch details:', err);
-      alert('Failed to fetch batch details. Please try again.');
+      setMessage('Failed to fetch batch details. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -30,12 +33,13 @@ const RetailerPage = () => {
     e.preventDefault();
 
     if (!storageDetails) {
-      alert('Please enter storage details.');
+      setMessage('Please enter storage details.');
       return;
     }
 
     try {
       setLoading(true);
+      setMessage('');
 
       // Send storage details to the backend
       await axios.put('http://localhost:5000/api/supply-chain/retailer/confirm', {
@@ -44,59 +48,49 @@ const RetailerPage = () => {
         role: 'retailer',
       });
 
-      alert('Receipt and storage details confirmed successfully!');
+      setMessage('Receipt and storage details confirmed successfully!');
       setStorageDetails('');
     } catch (err) {
       console.error('Error confirming receipt and storage:', err);
-      alert('Failed to confirm receipt and storage. Please try again.');
+      setMessage('Failed to confirm receipt and storage. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '20px' }}>
-      <h1 style={{ color: '#17a2b8' }}>Retailer Dashboard</h1>
-      <p>Scan a QR code to retrieve batch details and confirm receipt and storage conditions.</p>
+    <div className="retailer-page-container">
+      <h1 className="retailer-page-title">Retailer Dashboard</h1>
+      <p className="retailer-page-description">
+        Scan a QR code to retrieve batch details and confirm receipt and storage conditions.
+      </p>
 
-      <div style={{ marginTop: '20px' }}>
+      <div className="qr-scanner-container">
         <QRScanner onScan={handleScan} />
       </div>
 
-      {loading && <p>Loading...</p>}
+      {loading && <p className="loading-message">Loading...</p>}
+
+      {message && <p className="retailer-message">{message}</p>}
 
       {batchDetails && (
-        <div style={{ marginTop: '20px' }}>
+        <div className="batch-details-container">
           <h3>Batch Details:</h3>
           <p><strong>Batch ID:</strong> {batchId}</p>
           <p><strong>Details:</strong> {batchDetails.data}</p>
           <p><strong>Role:</strong> {batchDetails.role}</p>
 
-          <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}>
+          <form onSubmit={handleSubmit} className="storage-form">
             <textarea
               placeholder="Enter storage details (e.g., temperature, conditions)"
               value={storageDetails}
               onChange={(e) => setStorageDetails(e.target.value)}
-              style={{
-                padding: '10px',
-                width: '300px',
-                height: '100px',
-                border: '1px solid #ccc',
-                borderRadius: '5px',
-              }}
+              className="form-textarea"
+              aria-label="Storage Details"
             />
-            <br />
             <button
               type="submit"
-              style={{
-                padding: '10px 20px',
-                backgroundColor: '#17a2b8',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                marginTop: '10px',
-              }}
+              className="form-button"
               disabled={loading}
             >
               {loading ? 'Confirming...' : 'Confirm Receipt & Storage'}

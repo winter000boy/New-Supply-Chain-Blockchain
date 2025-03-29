@@ -12,25 +12,15 @@
     "start": "node server/server.js"
   },
   "dependencies": {
-    "qrcode.react": "^3.1.0",
     "truffle": "^5.9.0",
-    "web3": "^1.10.0"
+    "web3": "^1.10.5"
   },
   "devDependencies": {
     "dotenv": "^16.3.1",
     "ganache": "^7.9.0"
   },
-  "keywords": [
-    "blockchain",
-    "supply-chain",
-    "truffle",
-    "ethereum",
-    "smart-contracts"
-  ],
-  "author": "Your Name",
-  "license": "MIT",
   "engines": {
-    "node": ">=22.0.0",
+    "node": ">=18.0.0",
     "npm": ">=9.0.0"
   }
 }
