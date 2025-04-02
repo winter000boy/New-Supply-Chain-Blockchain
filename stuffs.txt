@@ -128,3 +128,5 @@ Test each step (supplier → manufacturer → distributor → retailer → consu
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ0aW5ueTAwZ2lhbnRAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQzMDU1NTQ3LCJleHAiOjE3NDMwNTkxNDd9.EEuZfT442KV7Uxhz49b86eZA1o8W3SLfcgFDCcm1u2Q",
     "role": "admin"
 }
+
+ganache -p 7545

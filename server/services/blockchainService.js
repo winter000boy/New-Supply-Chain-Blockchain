@@ -4,9 +4,20 @@ const Web3 = require('web3');
 // Initialize Web3 with the blockchain URL from the .env file
 const web3 = new Web3(new Web3.providers.HttpProvider(process.env.BLOCKCHAIN_URL));
 
-// Smart contract details
-const contractABI = JSON.parse(process.env.CONTRACT_ABI); // Load ABI from .env or configuration
+// Validate and parse the contract ABI
+let contractABI;
+try {
+  contractABI = JSON.parse(process.env.CONTRACT_ABI);
+} catch (err) {
+  console.error('Invalid CONTRACT_ABI in .env file:', err.message);
+  throw new Error('Failed to parse CONTRACT_ABI. Ensure it is valid JSON.');
+}
+
 const contractAddress = process.env.CONTRACT_ADDRESS; // Load contract address from .env
+
+if (!contractAddress) {
+  throw new Error('CONTRACT_ADDRESS is not defined in the .env file.');
+}
 
 // Initialize the smart contract
 const contract = new web3.eth.Contract(contractABI, contractAddress);
